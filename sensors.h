@@ -26,9 +26,4 @@ bool readRightLight();
 // Quick print function to see if all the ultrasonic sensors are funcitonal 
 void displayUS();
 // Quick print function to see if all the light sensors are funcitonal 
-
 void displayLight();
-  l_light = readRightlight();
-  r_light = readRightLight();
-  cout <<l_light;
-  cout <<r_light;

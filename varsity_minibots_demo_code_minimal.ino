@@ -1,3 +1,7 @@
+#include <Adafruit_Sensor.h>
+
+#include <Adafruit_Sensor.h>
+
 #include "config.h"
 #include "drive.h"
 #include "sensors.h"

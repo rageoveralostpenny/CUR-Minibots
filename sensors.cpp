@@ -8,23 +8,74 @@ UltraSonicDistanceSensor US_front(US_FRONT_TRIGGER, US_FRONT_ECHO);
 
 Adafruit_MPU6050 mpu;
 
-bool readLeftLight();
-  bool val = digitalRead(Sensor);
-  if{val ==1}{
-    return true;
-  }
-  else{
-    return false;
-  }
-  delay(500);
+// Function to read values of the LEFT ultrasonic sensor
+float readLeftUS(){
+  return US_left.measureDistanceCm();
+}
+// Function to read values of the RIGHT ultrasonic sensor
+float readRightUS(){
+  return US_right.measureDistanceCm();
+}
+// Function to read values of the FRONT ultrasonic sensor
+float readFrontUS(){
+  return US_front.measureDistanceCm();
+}
 
-  bool readRightLight();
-  bool val = digitalRead(Sensor);
-  if{val ==1}{
-    return true;
+void displayUS(){
+  float left=readLeftUS();
+  float right = readRightUS();
+  float front = readFrontUS();
+
+  if(left != -1.0 && right != -1.0 && front != -1.0){
+    Serial.println("All ultrasonic sensors working! Sensor values:");
+    Serial.println("Left:");Serial.print(left);Serial.print(" Right:");Serial.print(right);Serial.print(" Front:");Serial.print(front);
   }
+
   else{
-    return false;
+    if(left==-1.0){
+      Serial.println("Left ultrasonic sensor invalid, covered or too far from an obstacle.");
+    }
+   
+    if(right==-1.0){
+      Serial.println("Right ultrasonic sensor invalid, covered or too far from an obstacle.");
+    }
+ 
+    if(front==-1.0){
+      Serial.println("Front ultrasonic sensor invalid, covered or too far from an obstacle.");
+    }
+   
+    Serial.println("Sensor values (Left, Right, Front):");Serial.print(left);Serial.print(right);Serial.print(front);
   }
-  delay(500);
+  delay (20);
+  exit(0);
+}
+
+//bool readLeftLight(){
+//  bool val = digitalRead(Sensor);
+//  if(val ==1){
+//    return true;
+//  }
+//  else{
+//    return false;
+//  }
+//  delay(500);
+//}
+//
+// bool readRightLight(){
+//  bool val = digitalRead(Sensor);
+//  if(val ==1){
+//    return true;
+//  }
+//  else{
+//    return false;
+//  }
+//  delay(500);
+// }
+//
+//void displayLight(){
+//  bool RL = readRightlight();
+//  bool LL = readRightLight();
+//  cout <<RL;
+//  cout <<LL;
+//}
 
